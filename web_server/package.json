@@ -1,0 +1,22 @@
+{
+  "name": "solar_panel_monitoring",
+  "version": "1.0.0",
+  "description": "Simple webpage for monitoring the state of solar panels and inverter at home.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "myapp",
+    "solar_panel_monitoring"
+  ],
+  "author": "Daniel Kazup",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "mysql2": "^3.1.0",
+    "sequelize": "^6.11.0",
+    "sequelize-auto": "^0.8.8"
+  }
+}
