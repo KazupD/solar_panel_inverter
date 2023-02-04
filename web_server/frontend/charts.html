@@ -7,6 +7,19 @@
         <link rel="stylesheet" type="text/css" href="./charts.css" />
     </head>
     <body>
+        <div class="button-container">
+            <select name="Time Periods" id="timeperiods">
+                <option value="8">Last 8 hours</option>
+                <option value="24" selected>Last 24 hours</option>
+                <option value="72">Last 72 hours</option>
+                <option value="168">Last 168 hours</option>
+            </select>
+        </div>
+
+        <div class="twocharts">
+            <div class = "chart" id = "voltagebyplace"></div>
+            <div class = "chart" id = "currentbyplace"></div>
+        </div>
         
         <div class="button-container">
             <button id="general">General</button>
@@ -14,6 +27,7 @@
         </div>
         
         <script src="./charts.js"></script>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </body>
 
 </html>
