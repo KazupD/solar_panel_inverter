@@ -1,0 +1,90 @@
+body {   
+    font-family: arial;
+    color: rgba(20, 170, 20, 0.7);
+    line-height: 1.5;
+    height: 100vh;
+    position: relative;
+    
+    background-color: white;
+}
+.info-card-container {
+    padding: 5px;
+    display: flex;
+}
+.info-card {
+    /* Set the font size and weight */
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    background: rgba(20, 170, 20, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    color: white;
+    z-index: 3;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 50%;
+}
+.info-card:hover {
+    background-color: darkgreen;
+}
+.unit {
+    font-size: 15px;
+    font-weight: 400;
+}
+button {
+    text-align: center;
+    font-size: large;
+    font-weight: 600;
+    color: rgba(20, 170, 20, 0.7);
+    padding: 30px 15px;
+    margin: 40px 10px;
+    border: 4px solid rgba(20, 170, 20, 0.7);
+    background-color: transparent;
+    border-radius: 1rem;
+    cursor: pointer;
+    width: 50%;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4);
+}
+.button-container {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+button:hover {
+    background-color: lightgrey;
+}
+#voltagechart {
+    margin-left: 25px;
+    margin-right: 25px;
+    height: 300px;
+    width: 45%;
+}
+#currentchart {
+    margin-left: 25px;
+    margin-right: 25px;
+    height: 300px;
+    width: 45%;
+}
+#voltagebyplace {
+    margin-left: 25px;
+    margin-right: 25px;
+    height: 300px;
+    width: 45%;
+}
+#currentbyplace {
+    margin-left: 25px;
+    margin-right: 25px;
+    height: 300px;
+    width: 45%;
+}
+.twocharts {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

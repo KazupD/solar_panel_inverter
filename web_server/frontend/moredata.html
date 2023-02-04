@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Napelem</title>
+        <link rel="stylesheet" type="text/css" href="./moredata.css" />
+    </head>
+    <body>
+
+        <div class="info-card-container">
+            <div class="info-card">
+                <div class="name">S-E Voltage</div>
+                <div class="value"><span id="se_voltage"></span></div>
+                <div class="unit">[ V ]</div>
+            </div>
+            <div class="info-card">
+                <div class="name">S-E Current</div>
+                <div class="value"><span id="se_current"></span></div>
+                <div class="unit">[ A ]</div>
+            </div>
+        </div>
+        <div class="info-card-container">
+            <div class="info-card">
+                <div class="name">S-W Voltage</div>
+                <div class="value"><span id="sw_voltage"></span></div>
+                <div class="unit">[ V ]</div>
+            </div>
+            <div class="info-card">
+                <div class="name">S-W Current</div>
+                <div class="value"><span id="sw_current"></span></div>
+                <div class="unit">[ A ]</div>
+            </div>
+        </div>
+
+        <!--<div class="info-card-container">
+            <div class="info-card">
+                <div class="name">Current Power</div>
+                <div class="value"><span id="grid_connected_power"></span></div>
+                <div class="unit">[ W ]</div>
+            </div>
+            <div class="info-card">
+                <div class="name">Current Frequency</div>
+                <div class="value"><span id="grid_connected_frequency"></span></div>
+                <div class="unit">[ Hz ]</div>
+            </div>
+        </div>-->
+
+
+        <div class="info-card-container">
+            <div class="info-card">
+                <div class="name">L1 Voltage</div>
+                <div class="value"><span id="l1_voltage"></span></div>
+                <div class="unit">[ V ]</div>
+            </div>
+            <div class="info-card">
+                <div class="name">L1 Current</div>
+                <div class="value"><span id="l1_current"></span></div>
+                <div class="unit">[ A ]</div>
+            </div>
+        </div>
+        <div class="info-card-container">
+            <div class="info-card">
+                <div class="name">L2 Voltage</div>
+                <div class="value"><span id="l2_voltage"></span></div>
+                <div class="unit">[ V ]</div>
+            </div>
+            <div class="info-card">
+                <div class="name">L2 Current</div>
+                <div class="value"><span id="l2_current"></span></div>
+                <div class="unit">[ A ]</div>
+            </div>
+        </div>
+        <div class="info-card-container">
+            <div class="info-card">
+                <div class="name">L3 Voltage</div>
+                <div class="value"><span id="l3_voltage"></span></div>
+                <div class="unit">[ V ]</div>
+            </div>
+            <div class="info-card">
+                <div class="name">L3 Current</div>
+                <div class="value"><span id="l3_current"></span></div>
+                <div class="unit">[ A ]</div>
+            </div>
+        </div>
+
+        <div class="twocharts">
+            <div id = "voltagechart"></div>
+            <div id = "currentchart"></div>
+        </div>
+
+        <div class="twocharts">
+            <div id = "voltagebyplace"></div>
+            <div id = "currentbyplace"></div>
+        </div>
+
+        <div class="button-container">
+            <button id="general">General</button>
+            <button id="charts">Charts</button>
+        </div>
+        
+
+        <script src="./moredata.js"></script>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </body>
+
+</html>

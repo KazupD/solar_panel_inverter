@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Napelem</title>
+        <link rel="stylesheet" type="text/css" href="./general.css" />
+    </head>
+    <body>
+        
+        <div class="info-card-container">
+            <div class="info-card">
+                <div class="name">Total Generated</div>
+                <div class="value"><span id="total_generated"></span></div>
+                <div class="unit">[ kWh ]</div>
+            </div>
+            <div class="info-card">
+                <div class="name">Total Running Time</div>
+                <div class="value"><span id="total_running_time"></span></div>
+                <div class="unit">[ h ]</div>
+            </div>
+        </div>
+        <div class="info-card-container">
+            <div class="info-card">
+                <div class="name">Today Generated</div>
+                <div class="value"><span id="today_generated"></span></div>
+                <div class="unit">[ kWh ]</div>
+            </div>
+            <div class="info-card">
+                <div class="name">Today Running Time</div>
+                <div class="value"><span id="today_running_time"></span></div>
+                <div class="unit">[ h ]</div>
+            </div>
+        </div>
+        <div class="info-card-container">
+            <div class="info-card">
+                <div class="name">Current Power</div>
+                <div class="value"><span id="grid_connected_power"></span></div>
+                <div class="unit">[ W ]</div>
+            </div>
+            <div class="info-card">
+                <div class="name">Last Sample Time</div>
+                <div class="value"><span id="last_timestamp"></span></div>
+                <div class="unit">[ h:m ]</div>
+            </div>
+        </div>
+
+        <div id="doughnut"></div>
+
+        <div class="button-container">
+            <button id="data">More Data</button>
+            <button id="charts">Charts</button>
+        </div>
+          
+
+        <script src="./general.js"></script>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </body>
+
+</html>
