@@ -66,7 +66,7 @@ window.onload = async function () {
             interlacedColor: "#FFFFFF",
             gridColor: "#D3D3D3",
             minimum: 0,
-            maximum: 5,
+            maximum: 15,
         },
         data: [{
             type: "bar",
@@ -104,8 +104,8 @@ window.onload = async function () {
             axisYType: "secondary",
             color: "#14AA14",
             dataPoints: [
-                { y: datajson[0].south_east_plant_voltage, label: "S-W", color: "#AA1414" },
-                { y: datajson[0].south_west_plant_voltage, label: "S-E", color: "#1414AA" },
+                { y: datajson[0].south_east_plant_voltage, label: "S-E", color: "#AA1414" },
+                { y: datajson[0].south_west_plant_voltage, label: "S-W", color: "#1414AA" },
             ]
         }]
     });
@@ -133,8 +133,8 @@ window.onload = async function () {
             axisYType: "secondary",
             color: "#14AA14",
             dataPoints: [
-                { y: datajson[0].south_east_plant_current, label: "S-W", color: "#AA1414" },
-                { y: datajson[0].south_west_plant_current, label: "S-E", color: "#1414AA" },
+                { y: datajson[0].south_east_plant_current, label: "S-E", color: "#AA1414" },
+                { y: datajson[0].south_west_plant_current, label: "S-W", color: "#1414AA" },
             ]
         }]
     });
@@ -142,10 +142,11 @@ window.onload = async function () {
     {
       animationEnabled: true,
       title:{
-        text:"Power by roof placement [ W ]",
+        text:"Power by roof [ W ]",
         fontFamily: "Arial",
         fontSize: 20,
         fontWeight: "bold",
+        verticalAlign: "center",
         fontColor: "#14AA14",
       },
       data: [
@@ -154,7 +155,7 @@ window.onload = async function () {
        startAngle: 180,
        dataPoints: [
        {  y: datajson[0].south_east_plant_current*datajson[0].south_east_plant_voltage, color: "#AA1414", indexLabel: "S-E Power" },
-       {  y: datajson[0].south_west_plant_current*datajson[0].south_west_plant_voltage, color: "#14AA14", indexLabel: "S-W Power" },
+       {  y: datajson[0].south_west_plant_current*datajson[0].south_west_plant_voltage, color: "#1414AA", indexLabel: "S-W Power" },
        {  y: inverter_maxpower-(datajson[0].south_east_plant_current*datajson[0].south_east_plant_voltage)-(datajson[0].south_west_plant_current*datajson[0].south_west_plant_voltage), color: "#D3D3D3", indexLabel: "Inactive" },
        ]
      }
