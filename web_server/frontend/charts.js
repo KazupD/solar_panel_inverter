@@ -24,8 +24,8 @@ async function update_charts(hour) {
         se_current_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_east_plant_current});
         sw_current_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_west_plant_current});
         power_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].grid_connected_power});
-        se_power_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_east_plant_current*chartjson[i].south_east_plant_voltage});
-        sw_power_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_west_plant_current*chartjson[i].south_west_plant_voltage});
+        se_power_t.push({"x" : parseDate(chartjson[i].dt), "y" : Math.round(chartjson[i].south_east_plant_current*chartjson[i].south_east_plant_voltage)});
+        sw_power_t.push({"x" : parseDate(chartjson[i].dt), "y" : Math.round(chartjson[i].south_west_plant_current*chartjson[i].south_west_plant_voltage)});
     }
     console.log(power_t);
     
