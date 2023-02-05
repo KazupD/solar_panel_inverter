@@ -70,3 +70,7 @@ button:hover {
     align-items: center;
     justify-content: center;
 }
+#doughnut {
+    height: 400px;
+    width: 100%;
+}

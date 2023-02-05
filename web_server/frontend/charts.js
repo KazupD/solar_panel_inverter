@@ -15,14 +15,22 @@ async function update_charts(hour) {
     let sw_voltage_t = [];
     let se_current_t = [];
     let sw_current_t = [];
+    let power_t = [];
+    let se_power_t = [];
+    let sw_power_t = [];
     for(let i = 0; i < chartjson.length; i++) {
         se_voltage_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_east_plant_voltage});
         sw_voltage_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_west_plant_voltage});
         se_current_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_east_plant_current});
         sw_current_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_west_plant_current});
+        power_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].grid_connected_power});
+        se_power_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_east_plant_current*chartjson[i].south_east_plant_voltage});
+        sw_power_t.push({"x" : parseDate(chartjson[i].dt), "y" : chartjson[i].south_west_plant_current*chartjson[i].south_west_plant_voltage});
     }
+    console.log(power_t);
     
-    const chart1 = new CanvasJS.Chart("voltagebyplace", {
+    const chart2 = new CanvasJS.Chart("voltagebyplace", {
+        animationEnabled: true,
         title: {
             text: "Voltage S-E/S-W [ V ]",
             fontFamily: "Arial",
@@ -37,21 +45,14 @@ async function update_charts(hour) {
             suffix: "V"
         },
         toolTip: {
-            shared: true
-        },
-        legend: {
-            cursor: "pointer",
-            verticalAlign: "top",
-            horizontalAlign: "center",
-            dockInsidePlotArea: true,
+            shared: true,
         },
         data: [{
             type: "line",
             axisYType: "secondary",
             name: "S-W",
-            showInLegend: true,
             markerSize: 0,
-            yValueFormatString: "###V",
+            markerColor: "#1414AA",
             legendMarkerColor: "#1414AA",
             lineColor: "#1414AA",
             dataPoints: sw_voltage_t
@@ -60,16 +61,16 @@ async function update_charts(hour) {
             type:"line",
             axisYType: "secondary",
             name: "S-E",
-            showInLegend: true,
             markerSize: 0,
-            yValueFormatString: "###V",
+            markerColor: "#AA1414",
             legendMarkerColor: "#AA1414",
             lineColor: "#AA1414",
             dataPoints: se_voltage_t
         },
        ]
     });
-    const chart2 = new CanvasJS.Chart("currentbyplace", {
+    const chart3 = new CanvasJS.Chart("currentbyplace", {
+        animationEnabled: true,
         title: {
             text: "Current S-E/S-W [ A ]",
             fontFamily: "Arial",
@@ -86,19 +87,12 @@ async function update_charts(hour) {
         toolTip: {
             shared: true
         },
-        legend: {
-            cursor: "pointer",
-            verticalAlign: "top",
-            horizontalAlign: "center",
-            dockInsidePlotArea: true,
-        },
         data: [{
             type: "line",
             axisYType: "secondary",
             name: "S-W",
-            showInLegend: true,
             markerSize: 0,
-            yValueFormatString: "###A",
+            markerColor: "#1414AA",
             legendMarkerColor: "#1414AA",
             lineColor: "#1414AA",
             dataPoints: sw_current_t
@@ -107,21 +101,94 @@ async function update_charts(hour) {
             type:"line",
             axisYType: "secondary",
             name: "S-E",
-            showInLegend: true,
             markerSize: 0,
-            yValueFormatString: "###A",
+            markerColor: "#AA1414",
             legendMarkerColor: "#AA1414",
             lineColor: "#AA1414",
             dataPoints: se_current_t
         },
        ]
     });
+    const chart1 = new CanvasJS.Chart("power", {
+        animationEnabled: true,
+        title: {
+            text: "Power [ W ]",
+            fontFamily: "Arial",
+            fontSize: 20,
+            fontWeight: "bold",
+            fontColor: "#14AA14",
+        },
+        axisX: {
+            valueFormatString: "D'th' hh:mm TT"
+        },
+        axisY2: {
+            suffix: "W"
+        },
+        toolTip: {
+            shared: true,
+        },
+        data: [{
+            type: "line",
+            axisYType: "secondary",
+            name: "Power",
+            markerSize: 0,
+            markerColor: "#14AA14",
+            legendMarkerColor: "#14AA14",
+            lineColor: "#1414AA",
+            dataPoints: power_t
+        }
+       ]
+    });
+    const chart4 = new CanvasJS.Chart("powerbyplace", {
+        animationEnabled: true,
+        title: {
+            text: "Power S-E/S-W [ W ]",
+            fontFamily: "Arial",
+            fontSize: 20,
+            fontWeight: "bold",
+            fontColor: "#14AA14",
+        },
+        axisX: {
+            valueFormatString: "D'th' hh:mm TT"
+        },
+        axisY2: {
+            suffix: "W"
+        },
+        toolTip: {
+            shared: true
+        },
+        data: [{
+            type: "line",
+            axisYType: "secondary",
+            name: "S-W",
+            markerSize: 0,
+            markerColor: "#1414AA",
+            legendMarkerColor: "#1414AA",
+            lineColor: "#1414AA",
+            dataPoints: sw_power_t
+        },
+        {
+            type:"line",
+            axisYType: "secondary",
+            name: "S-E",
+            markerSize: 0,
+            markerColor: "#AA1414",
+            legendMarkerColor: "#AA1414",
+            lineColor: "#AA1414",
+            dataPoints: se_power_t
+        },
+       ]
+    });
     chart1.render();
     chart2.render();
+    chart3.render();
+    chart4.render();
 }
 
 function parseDate(str_date) {
-    return new Date(Date.parse(str_date));
+    let dt = new Date(Date.parse(str_date));
+    dt.setHours(dt.getHours() - 1);
+    return dt;
 }
 
 btn1.addEventListener('click',function ()

@@ -1,4 +1,5 @@
 let datajson;
+const inverter_maxpower = 15000;
 
 window.onload = async function () {
     datajson = await fetch('http://192.168.1.70:8080/datajson').then(res => res.json());
@@ -103,8 +104,8 @@ window.onload = async function () {
             axisYType: "secondary",
             color: "#14AA14",
             dataPoints: [
-                { y: datajson[0].south_east_plant_voltage, label: "L1", color: "#AA1414" },
-                { y: datajson[0].south_west_plant_voltage, label: "L3", color: "#1414AA" },
+                { y: datajson[0].south_east_plant_voltage, label: "S-W", color: "#AA1414" },
+                { y: datajson[0].south_west_plant_voltage, label: "S-E", color: "#1414AA" },
             ]
         }]
     });
@@ -132,15 +133,38 @@ window.onload = async function () {
             axisYType: "secondary",
             color: "#14AA14",
             dataPoints: [
-                { y: datajson[0].south_east_plant_current, label: "L1", color: "#AA1414" },
-                { y: datajson[0].south_west_plant_current, label: "L3", color: "#1414AA" },
+                { y: datajson[0].south_east_plant_current, label: "S-W", color: "#AA1414" },
+                { y: datajson[0].south_west_plant_current, label: "S-E", color: "#1414AA" },
             ]
         }]
+    });
+    const chart5 = new CanvasJS.Chart("doughnut",
+    {
+      animationEnabled: true,
+      title:{
+        text:"Power by roof placement [ W ]",
+        fontFamily: "Arial",
+        fontSize: 20,
+        fontWeight: "bold",
+        fontColor: "#14AA14",
+      },
+      data: [
+      {
+       type: "doughnut",
+       startAngle: 180,
+       dataPoints: [
+       {  y: datajson[0].south_east_plant_current*datajson[0].south_east_plant_voltage, color: "#AA1414", indexLabel: "S-E Power" },
+       {  y: datajson[0].south_west_plant_current*datajson[0].south_west_plant_voltage, color: "#14AA14", indexLabel: "S-W Power" },
+       {  y: inverter_maxpower-(datajson[0].south_east_plant_current*datajson[0].south_east_plant_voltage)-(datajson[0].south_west_plant_current*datajson[0].south_west_plant_voltage), color: "#D3D3D3", indexLabel: "Inactive" },
+       ]
+     }
+     ]
     });
     chart1.render();
     chart2.render();
     chart3.render();
     chart4.render();
+    chart5.render();
 }
 
 const btn1 = document.getElementById("general");
