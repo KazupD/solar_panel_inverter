@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const path = require('path');
 const {Sequelize, DataTypes} = require('sequelize');
 
 const SAJURL = 'http://192.168.1.67/status/status.php';
@@ -46,9 +45,23 @@ async function get_last_row(){
     try{
         const maxid = await inverter_data.max('id');
         const last_row = await inverter_data.findAll({
-            where: {
-                id: maxid
-            },
+            attributes: ['total_generated',
+                        'total_running_time',
+                        'today_generated',
+                        'today_running_time',
+                        'south_east_plant_voltage',
+                        'south_east_plant_current',
+                        'south_west_plant_voltage',
+                        'south_west_plant_current',
+                        'grid_connected_power',
+                        'grid_connected_frequency',
+                        'line1_voltage',
+                        'line1_current',
+                        'line2_voltage',
+                        'line2_current',
+                        'line3_voltage',
+                        'line3_current'],
+            where: { id: maxid },
             raw: true
         })
         return last_row[0];
@@ -57,17 +70,71 @@ async function get_last_row(){
     }
 }
 
-async function insert_new_row(_json_){
+async function insert_new_row(){
     const new_data = await get_data();
     const hour = what_hour();
     if(new_data===undefined){
-        if(hour < 12){
-
-        } else {
-
+        const last_row = await get_last_row();
+        if(hour < 12){ // BEFORE SUNRISE, INVERTER IS OFF
+            console.log("BEFORE SUNRISE, INVERTER IS OFF")
+            try{
+                await inverter_data.create({
+                    "total_generated": last_row.total_generated,
+                    "total_running_time": last_row.total_running_time,
+                    "today_generated": 0,
+                    "today_running_time": 0,
+                    "south_east_plant_voltage": 0,
+                    "south_east_plant_current": 0,
+                    "south_west_plant_voltage": 0,
+                    "south_west_plant_current": 0,
+                    "grid_connected_power": 0,
+                    "grid_connected_frequency": 0,
+                    "line1_voltage": 0,
+                    "line2_voltage": 0,
+                    "line3_voltage": 0,
+                    "line1_current": 0,
+                    "line2_current": 0,
+                    "line3_current": 0});
+                console.log("INSERTED SUCCESSFULLY");}
+            catch(error){
+                console.log(error);
+                return undefined;
+            }
+        } else { // ATFER SUNSET, INVERTER IS OFF
+            console.log("AFTER SUNSET, INVERTER IS OFF");
+            try{
+                await inverter_data.create({
+                    "total_generated": last_row.total_generated,
+                    "total_running_time": last_row.total_running_time,
+                    "today_generated": last_row.today_generated,
+                    "today_running_time": last_row.today_running_time,
+                    "south_east_plant_voltage": 0,
+                    "south_east_plant_current": 0,
+                    "south_west_plant_voltage": 0,
+                    "south_west_plant_current": 0,
+                    "grid_connected_power": 0,
+                    "grid_connected_frequency": 0,
+                    "line1_voltage": 0,
+                    "line2_voltage": 0,
+                    "line3_voltage": 0,
+                    "line1_current": 0,
+                    "line2_current": 0,
+                    "line3_current": 0});
+                console.log("INSERTED SUCCESSFULLY");}
+            catch(error){
+                console.log(error);
+                return undefined;
+            }
         }
-    } else {
-
+    } else { // DAYTIME INVERTER IS ON
+        console.log("DAYTIME, INVERTER IS ON");
+        try{
+            await inverter_data.create(new_data);
+            console.log("INSERTED SUCCESSFULLY");}
+        catch(error){
+            console.log(error);
+            return undefined;
+        }
     }
 }
 
@@ -77,12 +144,6 @@ function what_hour(){
 }
 
 (async () => {
-    //let received_inverter_data = await get_data();
-    //console.log(received_inverter_data);
-    //console.log(what_hour());
-
-    let last_row = await get_last_row();
-    console.log(last_row);
-
+    await insert_new_row();
     Conn.close();
 })()
