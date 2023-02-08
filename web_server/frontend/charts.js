@@ -187,7 +187,7 @@ async function update_charts(hour) {
 
 function parseDate(str_date) {
     let dt = new Date(Date.parse(str_date));
-    dt.setHours(dt.getHours() - 1);
+    dt.setHours(dt.getHours());
     return dt;
 }
 

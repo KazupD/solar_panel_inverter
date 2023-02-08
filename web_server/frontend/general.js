@@ -43,7 +43,7 @@ function padTo2Digits(num) {return num.toString().padStart(2, '0');}
 
 function parseDate(str_date) {
     let dt = new Date(Date.parse(str_date));
-    dt.setHours(dt.getHours() - 1);
+    dt.setHours(dt.getHours());
     return padTo2Digits(dt.getHours()) + ":" + padTo2Digits(dt.getMinutes());
 }
 

@@ -13,6 +13,7 @@
   "author": "Daniel Kazup",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.1",
     "canvasjs": "^1.8.3",
     "express": "^4.18.2",
     "moment": "^2.29.4",

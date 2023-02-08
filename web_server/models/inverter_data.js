@@ -88,7 +88,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: 0
     },
     dt: {
-      type: DataTypes.DATE,
+      type: "DATETIME",
       allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     }
