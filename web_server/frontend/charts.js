@@ -3,6 +3,7 @@ let chartjson;
 const slct = document.getElementById("timeperiods");
 const btn1 = document.getElementById("general");
 const btn2 = document.getElementById("data");
+const btn3 = document.getElementById("stats");
 
 window.onload = async function () {
     await update_charts(slct.value);
@@ -27,7 +28,6 @@ async function update_charts(hour) {
         se_power_t.push({"x" : parseDate(chartjson[i].dt), "y" : Math.round(chartjson[i].south_east_plant_current*chartjson[i].south_east_plant_voltage)});
         sw_power_t.push({"x" : parseDate(chartjson[i].dt), "y" : Math.round(chartjson[i].south_west_plant_current*chartjson[i].south_west_plant_voltage)});
     }
-    console.log(power_t);
     
     const chart2 = new CanvasJS.Chart("voltagebyplace", {
         animationEnabled: true,
@@ -199,6 +199,11 @@ btn1.addEventListener('click',function ()
 btn2.addEventListener('click',function ()
 {
     location.assign('http://192.168.1.70:8080/data');
+});
+
+btn3.addEventListener('click',function ()
+{
+    location.assign('http://192.168.1.70:8080/statistics');
 });
 
 slct.addEventListener('change', function() {

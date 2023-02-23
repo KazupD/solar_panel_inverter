@@ -169,6 +169,30 @@ app.get('/chartjson/:hr', async (req, res) => {
 });
 
 
+app.get('/statisticsjson/:day', async (req, res) => {
+    try{
+        const now_local = moment();
+        console.log(now_local)
+        const then_local = now_local.subtract(Number(req.params.day), 'days').startOf('day').toDate();
+        const rows = await inverter_data.findAll({
+            attributes: [[Sequelize.fn('MAX', Sequelize.col('today_generated')), 'max_today_generated'],
+                        [Sequelize.fn('MAX', Sequelize.col('today_running_time')), 'max_today_running_time'],
+                        [Sequelize.fn('MAX', Sequelize.col('grid_connected_power')), 'max_grid_connected_power'],
+                        [Sequelize.fn("DAY", Sequelize.col("dt")), "day"],
+                        [Sequelize.fn("MONTH", Sequelize.col("dt")), "month"],
+                        [Sequelize.fn("YEAR", Sequelize.col("dt")), "year"]],
+            where: { dt: { [Op.gt]: then_local}, },
+            group: ['year', 'month', 'day'],
+            raw: true
+        });
+        console.log(rows)
+        res.send(rows);
+    } catch (error) {
+        console.log(error);
+        res.send(undefined);
+    }
+});
+
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './frontend/general.html'));
 });
@@ -179,6 +203,10 @@ app.get('/data', function(req, res) {
 
 app.get('/chart', function(req, res) {
     res.sendFile(path.join(__dirname, './frontend/charts.html'));
+});
+
+app.get('/statistics', function(req, res) {
+    res.sendFile(path.join(__dirname, './frontend/statistics.html'));
 });
 // END OF GET REQUESTS
 

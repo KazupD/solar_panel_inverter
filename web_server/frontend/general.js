@@ -49,6 +49,7 @@ function parseDate(str_date) {
 
 const btn1 = document.getElementById("charts");
 const btn2 = document.getElementById("data");
+const btn3 = document.getElementById("stats");
 
 btn1.addEventListener('click',function ()
 {
@@ -58,4 +59,9 @@ btn1.addEventListener('click',function ()
 btn2.addEventListener('click',function ()
 {
     location.assign('http://192.168.1.70:8080/data');
+});
+
+btn3.addEventListener('click',function ()
+{
+    location.assign('http://192.168.1.70:8080/statistics');
 });

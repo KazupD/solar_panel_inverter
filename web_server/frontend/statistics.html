@@ -4,41 +4,36 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Napelem</title>
-        <link rel="stylesheet" type="text/css" href="./charts.css" />
+        <link rel="stylesheet" type="text/css" href="./statistics.css" />
     </head>
     <body>
         <div class="button-container">
             <select name="Time Periods" id="timeperiods">
-                <option value="8">Last 8 hours</option>
-                <option value="24" selected>Last 24 hours</option>
-                <option value="72">Last 72 hours</option>
-                <option value="168">Last 168 hours</option>
+                <option value="5" selected>Last 5 days</option>
+                <option value="10">Last 10 days</option>
+                <option value="30">Last 30 days</option>
             </select>
         </div>
 
         <div class="onechart">
-            <div class = "widechart" id="power"></div>
+            <div class = "widechart" id="generated"></div>
         </div>
 
         <div class="onechart">
-            <div class = "widechart" id="voltagebyplace"></div>
+            <div class = "widechart" id="runningtime"></div>
         </div>
 
         <div class="onechart">
-            <div class = "widechart" id="currentbyplace"></div>
-        </div>
-
-        <div class="onechart">
-            <div class = "widechart" id="powerbyplace"></div>
+            <div class = "widechart" id="maxpower"></div>
         </div>
         
         <div class="button-container">
             <button id="general">General</button>
             <button id="data">More Data</button>
-            <button id="stats">Stats</button>
+            <button id="charts">Charts</button>
         </div>
         
-        <script src="./charts.js"></script>
+        <script src="./statistics.js"></script>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </body>
 

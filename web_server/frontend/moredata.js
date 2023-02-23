@@ -66,7 +66,7 @@ window.onload = async function () {
             interlacedColor: "#FFFFFF",
             gridColor: "#D3D3D3",
             minimum: 0,
-            maximum: 15,
+            maximum: 20,
         },
         data: [{
             type: "bar",
@@ -170,6 +170,7 @@ window.onload = async function () {
 
 const btn1 = document.getElementById("general");
 const btn2 = document.getElementById("charts");
+const btn3 = document.getElementById("stats");
 
 btn1.addEventListener('click',function ()
 {
@@ -179,4 +180,9 @@ btn1.addEventListener('click',function ()
 btn2.addEventListener('click',function ()
 {
     location.assign('http://192.168.1.70:8080/chart');
+});
+
+btn3.addEventListener('click',function ()
+{
+    location.assign('http://192.168.1.70:8080/statistics');
 });

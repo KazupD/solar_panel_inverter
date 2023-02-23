@@ -1,0 +1,76 @@
+body {   
+    font-family: arial;
+    color: rgba(20, 170, 20, 0.7);
+    line-height: 1.5;
+    height: 100vh;
+    position: relative;
+    
+    background-color: white;
+}
+button {
+    text-align: center;
+    font-size: large;
+    font-weight: 600;
+    color: rgba(20, 170, 20, 0.7);
+    padding: 30px 15px;
+    margin: 40px 10px;
+    border: 4px solid rgba(20, 170, 20, 0.7);
+    background-color: transparent;
+    border-radius: 1rem;
+    cursor: pointer;
+    width: 50%;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4);
+}
+select {
+    text-align: center;
+    font-size: large;
+    font-weight: 600;
+    color: rgba(20, 170, 20, 0.7);
+    padding: 15px 10px;
+    margin: 25px 5px;
+    border: 4px solid rgba(20, 170, 20, 0.7);
+    background-color: transparent;
+    border-radius: 1rem;
+    cursor: pointer;
+    width: 50%;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4);
+}
+.button-container {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+button:hover {
+    background-color: lightgrey;
+}
+select:hover {
+    background-color: lightgrey;
+}
+.chart {
+    margin-left: 25px;
+    margin-right: 25px;
+    height: 400px;
+    width: 45%;
+}
+.widechart {
+    margin-left: 25px;
+    margin-right: 25px;
+    height: 400px;
+    width: 90%;
+}
+.twocharts {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.onechart {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
