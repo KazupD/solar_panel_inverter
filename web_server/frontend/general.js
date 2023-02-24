@@ -1,4 +1,4 @@
-const ip_addr = '192.168.1.70';
+const ip_addr = '192.168.1.64';
 const port = '8080';
 
 let generaljson;
