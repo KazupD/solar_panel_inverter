@@ -4,10 +4,12 @@ const moment = require('moment')
 const bodyparser = require('body-parser')
 const {Sequelize, DataTypes, Op} = require('sequelize');
 
-const mysql_ip = '172.17.0.2';
+const mysql_ip = 'localhost';
+const user = 'pi';
+const password = 'raspberry'
 
 // CONNECT TO DATABASE
-const Conn = new Sequelize('solar_panel_inverter', 'root', 'raspberry',
+const Conn = new Sequelize('solar_panel_inverter', user, password,
                 {host:mysql_ip, dialect:'mysql',
                 typeCast: function (field, next) {
                     if (field.type === 'DATETIME') {return field.string();}
