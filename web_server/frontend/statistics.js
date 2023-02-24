@@ -15,18 +15,22 @@ async function update_charts(days) {
     let generated = [];
     let runningtime = [];
     let maxpower = [];
+    let generated_sum = 0;
+    let runningtime_sum = 0;
     for(let i = 0; i < statisticsjson.length; i++) {
         generated.push({"label" : String(statisticsjson[i].month)+". "+String(statisticsjson[i].day)+".", "y" : statisticsjson[i].max_today_generated});
         runningtime.push({"label" : String(statisticsjson[i].month)+". "+String(statisticsjson[i].day)+".", "y" : statisticsjson[i].max_today_running_time});
         maxpower.push({"label" : String(statisticsjson[i].month)+". "+String(statisticsjson[i].day)+".", "y" : statisticsjson[i].max_grid_connected_power});
+        generated_sum = generated_sum + statisticsjson[i].max_today_generated;
+        runningtime_sum = runningtime_sum + statisticsjson[i].max_today_running_time;
     }
 
     const chart1 = new CanvasJS.Chart("generated", {
         animationEnabled: true,
         title:{
-            text: "Energy Generated",
+            text: "Generated: " + String(Math.round(generated_sum)) + " [kWh]",
             fontFamily: "Arial",
-            fontSize: 20,
+            fontSize: 25,
             fontWeight: "bold",
             fontColor: "#14AA14",
         },
@@ -46,12 +50,13 @@ async function update_charts(days) {
             color: "#14AA14",
         }]
     });
+    chart1.options.data[0].dataPoints[generated.length-1].color = "#1414AA";
     const chart2 = new CanvasJS.Chart("runningtime", {
         animationEnabled: true,
         title:{
-            text: "Running Time",
+            text: "Running time: " + String(Math.round(runningtime_sum)) + " [h]",
             fontFamily: "Arial",
-            fontSize: 20,
+            fontSize: 25,
             fontWeight: "bold",
             fontColor: "#14AA14",
         },
@@ -71,12 +76,13 @@ async function update_charts(days) {
             color: "#14AA14",
         }]
     });
+    chart2.options.data[0].dataPoints[runningtime.length-1].color = "#1414AA";
     const chart3 = new CanvasJS.Chart("maxpower", {
         animationEnabled: true,
         title:{
             text: "Max Power",
             fontFamily: "Arial",
-            fontSize: 20,
+            fontSize: 25,
             fontWeight: "bold",
             fontColor: "#14AA14",
         },
@@ -96,6 +102,7 @@ async function update_charts(days) {
             color: "#14AA14",
         }]
     });
+    chart3.options.data[0].dataPoints[maxpower.length-1].color = "#1414AA";
     chart1.render();
     chart2.render();
     chart3.render();

@@ -152,7 +152,7 @@ app.get('/chartjson/:hr', async (req, res) => {
     try{
         const now_local = moment();
         console.log(now_local)
-        const then_local = now_local.subtract(Number(req.params.hr), 'hours').toDate();
+        const then_local = now_local.subtract(Number(req.params.hr), 'hours').startOf('hour').toDate();
         const rows = await inverter_data.findAll({
             attributes: ['south_east_plant_voltage','south_east_plant_current','south_west_plant_voltage',
                         'south_west_plant_current','grid_connected_power','grid_connected_frequency',
@@ -185,7 +185,6 @@ app.get('/statisticsjson/:day', async (req, res) => {
             group: ['year', 'month', 'day'],
             raw: true
         });
-        console.log(rows)
         res.send(rows);
     } catch (error) {
         console.log(error);
