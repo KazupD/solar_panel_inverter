@@ -5,9 +5,6 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-ENV MYSQL_IP 172.17.0.2
-ENV SELF_IP  192.168.1.64
-
 COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install --production
@@ -18,3 +15,9 @@ EXPOSE 8080
 EXPOSE 3306
 
 CMD [ "node", "server.js" ]
+
+#BUILD
+#docker build --tag web_server .
+
+#RUN
+#docker run -d --name web_server --publish 8080:8080 --link my-mysql web_server
