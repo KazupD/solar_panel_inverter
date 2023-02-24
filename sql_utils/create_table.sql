@@ -1,0 +1,21 @@
+CREATE TABLE if not exists inverter_data (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    total_generated float NOT NULL DEFAULT 0,
+    total_running_time float NOT NULL DEFAULT 0,
+    today_generated float NOT NULL DEFAULT 0,
+    today_running_time float NOT NULL DEFAULT 0,
+    south_east_plant_voltage float NOT NULL DEFAULT 0,
+    south_east_plant_current float NOT NULL DEFAULT 0,
+    south_west_plant_voltage float NOT NULL DEFAULT 0,
+    south_west_plant_current float NOT NULL DEFAULT 0,
+    grid_connected_power float NOT NULL DEFAULT 0,
+    grid_connected_frequency float NOT NULL DEFAULT 0,
+    line1_voltage float NOT NULL DEFAULT 0,
+    line2_voltage float NOT NULL DEFAULT 0,
+    line3_voltage float NOT NULL DEFAULT 0,
+    line1_current float NOT NULL DEFAULT 0,
+    line2_current float NOT NULL DEFAULT 0,
+    line3_current float NOT NULL DEFAULT 0,
+    dt datetime NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY (id)
+)
