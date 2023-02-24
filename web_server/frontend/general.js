@@ -1,8 +1,11 @@
+const ip_addr = '192.168.1.64';
+const port = '8080';
+
 let generaljson;
 const inverter_maxpower = 15000;
 
 window.onload = async function () {
-    generaljson = await fetch('http://192.168.1.70:8080/generaljson').then(res => res.json());
+    generaljson = await fetch('http://'+String(ip_addr)+':'+String(port)+'/generaljson').then(res => res.json());
 
     document.getElementById("total_generated").textContent=String(generaljson[0].total_generated);
     document.getElementById("total_running_time").textContent=String(generaljson[0].total_running_time);
@@ -53,15 +56,15 @@ const btn3 = document.getElementById("stats");
 
 btn1.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/chart');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/chart');
 });
 
 btn2.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/data');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/data');
 });
 
 btn3.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/statistics');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/statistics');
 });

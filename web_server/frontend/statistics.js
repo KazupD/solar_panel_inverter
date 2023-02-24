@@ -1,3 +1,6 @@
+const ip_addr = '192.168.1.64';
+const port = '8080';
+
 let statisticsjson;
 
 const slct = document.getElementById("timeperiods");
@@ -10,7 +13,7 @@ window.onload = async function () {
 }
 
 async function update_charts(days) {
-    statisticsjson = await fetch('http://192.168.1.70:8080/statisticsjson/' + String(days)).then(res => res.json());
+    statisticsjson = await fetch('http://'+String(ip_addr)+':'+String(port)+'/statisticsjson/' + String(days)).then(res => res.json());
     
     let generated = [];
     let runningtime = [];
@@ -110,17 +113,17 @@ async function update_charts(days) {
 
 btn1.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/');
 });
 
 btn2.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/data');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/data');
 });
 
 btn3.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/chart');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/chart');
 });
 
 slct.addEventListener('change', function() {

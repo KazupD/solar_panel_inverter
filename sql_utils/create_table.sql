@@ -18,4 +18,4 @@ CREATE TABLE if not exists inverter_data (
     line3_current float NOT NULL DEFAULT 0,
     dt datetime NOT NULL DEFAULT current_timestamp(),
     PRIMARY KEY (id)
-)
+);

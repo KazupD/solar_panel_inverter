@@ -1,8 +1,11 @@
+const ip_addr = '192.168.1.64';
+const port = '8080';
+
 let datajson;
 const inverter_maxpower = 15000;
 
 window.onload = async function () {
-    datajson = await fetch('http://192.168.1.70:8080/datajson').then(res => res.json());
+    datajson = await fetch('http://'+String(ip_addr)+':'+String(port)+'/datajson').then(res => res.json());
 
     document.getElementById("se_voltage").textContent=String(datajson[0].south_east_plant_voltage);
     document.getElementById("se_current").textContent=String(datajson[0].south_east_plant_current);
@@ -174,15 +177,15 @@ const btn3 = document.getElementById("stats");
 
 btn1.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/');
 });
 
 btn2.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/chart');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/chart');
 });
 
 btn3.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/statistics');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/statistics');
 });

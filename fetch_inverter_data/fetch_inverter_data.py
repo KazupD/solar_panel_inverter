@@ -6,6 +6,10 @@ from datetime import datetime
 SAJ_URL = "http://192.168.1.67/status/status.php"
 SERVER_URL = 'http://localhost:8080/postinverterdata'
 
+REMOTE_SERVER_IP = '192.168.1.64'
+REMOTE_SERVER_PORT = '8080'
+REMOTE_SERVER_URL = 'http://'+REMOTE_SERVER_IP+':'+REMOTE_SERVER_PORT+'/postinverterdata'
+
 GREEN = 19
 RED = 26
 
@@ -67,6 +71,12 @@ def main():
         answer = "ERROR"
 
     flash_led(answer)
+
+    try:
+        response = requests.post(REMOTE_SERVER_URL, data=payload)
+        answer = response.text
+    except:
+        answer = "ERROR"
 
 
 if __name__ == "__main__":

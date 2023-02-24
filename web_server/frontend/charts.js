@@ -1,3 +1,6 @@
+const ip_addr = '192.168.1.64';
+const port = '8080';
+
 let chartjson;
 
 const slct = document.getElementById("timeperiods");
@@ -10,7 +13,7 @@ window.onload = async function () {
 }
 
 async function update_charts(hour) {
-    chartjson = await fetch('http://192.168.1.70:8080/chartjson/' + String(hour)).then(res => res.json());
+    chartjson = await fetch('http://'+String(ip_addr)+':'+String(port)+'/chartjson/' + String(hour)).then(res => res.json());
     
     let se_voltage_t = [];
     let sw_voltage_t = [];
@@ -193,17 +196,17 @@ function parseDate(str_date) {
 
 btn1.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/');
 });
 
 btn2.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/data');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/data');
 });
 
 btn3.addEventListener('click',function ()
 {
-    location.assign('http://192.168.1.70:8080/statistics');
+    location.assign('http://'+String(ip_addr)+':'+String(port)+'/statistics');
 });
 
 slct.addEventListener('change', function() {
