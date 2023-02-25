@@ -5,7 +5,7 @@ let generaljson;
 const inverter_maxpower = 15000;
 
 window.onload = async function () {
-    generaljson = await fetch('http://'+String(ip_addr)+':'+String(port)+'/generaljson').then(res => res.json());
+    generaljson = await fetch('http://'+ip_addr+':'+port+'/generaljson').then(res => res.json());
 
     document.getElementById("total_generated").textContent=String(generaljson[0].total_generated);
     document.getElementById("total_running_time").textContent=String(generaljson[0].total_running_time);
@@ -56,15 +56,15 @@ const btn3 = document.getElementById("stats");
 
 btn1.addEventListener('click',function ()
 {
-    location.assign('http://'+String(ip_addr)+':'+String(port)+'/chart');
+    location.assign('http://'+ip_addr+':'+port+'/chart');
 });
 
 btn2.addEventListener('click',function ()
 {
-    location.assign('http://'+String(ip_addr)+':'+String(port)+'/data');
+    location.assign('http://'+ip_addr+':'+port+'/data');
 });
 
 btn3.addEventListener('click',function ()
 {
-    location.assign('http://'+String(ip_addr)+':'+String(port)+'/statistics');
+    location.assign('http://'+ip_addr+':'+port+'/statistics');
 });

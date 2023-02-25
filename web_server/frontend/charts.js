@@ -13,7 +13,7 @@ window.onload = async function () {
 }
 
 async function update_charts(hour) {
-    chartjson = await fetch('http://'+String(ip_addr)+':'+String(port)+'/chartjson/' + String(hour)).then(res => res.json());
+    chartjson = await fetch('http://'+ip_addr+':'+port+'/chartjson/' + String(hour)).then(res => res.json());
     
     let se_voltage_t = [];
     let sw_voltage_t = [];
@@ -196,17 +196,17 @@ function parseDate(str_date) {
 
 btn1.addEventListener('click',function ()
 {
-    location.assign('http://'+String(ip_addr)+':'+String(port)+'/');
+    location.assign('http://'+ip_addr+':'+String(port)+'/');
 });
 
 btn2.addEventListener('click',function ()
 {
-    location.assign('http://'+String(ip_addr)+':'+String(port)+'/data');
+    location.assign('http://'+ip_addr+':'+port+'/data');
 });
 
 btn3.addEventListener('click',function ()
 {
-    location.assign('http://'+String(ip_addr)+':'+String(port)+'/statistics');
+    location.assign('http://'+ip_addr+':'+port+'/statistics');
 });
 
 slct.addEventListener('change', function() {

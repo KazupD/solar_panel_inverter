@@ -13,7 +13,7 @@ window.onload = async function () {
 }
 
 async function update_charts(days) {
-    statisticsjson = await fetch('http://'+String(ip_addr)+':'+String(port)+'/statisticsjson/' + String(days)).then(res => res.json());
+    statisticsjson = await fetch('http://'+ip_addr+':'+port+'/statisticsjson/' + String(days)).then(res => res.json());
     
     let generated = [];
     let runningtime = [];
@@ -113,17 +113,17 @@ async function update_charts(days) {
 
 btn1.addEventListener('click',function ()
 {
-    location.assign('http://'+String(ip_addr)+':'+String(port)+'/');
+    location.assign('http://'+ip_addr+':'+port+'/');
 });
 
 btn2.addEventListener('click',function ()
 {
-    location.assign('http://'+String(ip_addr)+':'+String(port)+'/data');
+    location.assign('http://'+ip_addr+':'+port+'/data');
 });
 
 btn3.addEventListener('click',function ()
 {
-    location.assign('http://'+String(ip_addr)+':'+String(port)+'/chart');
+    location.assign('http://'+ip_addr+':'+port+'/chart');
 });
 
 slct.addEventListener('change', function() {
